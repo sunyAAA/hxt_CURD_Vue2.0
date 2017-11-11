@@ -30,15 +30,13 @@
         <router-view></router-view>
       </keep-alive>
     </el-main>
-    <v-output></v-output>
   </div>
 </template>
 
 <script>
-import VOutput from './components/output'
 export default {
   name: "app",
-  components: {VOutput},
+  components: {},
   data() {
     return {
       activeIndex: "",
