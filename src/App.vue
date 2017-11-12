@@ -7,7 +7,7 @@
       <el-col :span='6'>
         <el-menu mode="horizontal"  >
           <el-menu-item index='1'>出库</el-menu-item>
-          <el-menu-item index='2'>入库</el-menu-item>
+          <el-menu-item index='2' @click='inForm'>入库</el-menu-item>
           <el-menu-item index='3'>修改</el-menu-item>
         </el-menu>
       </el-col>
@@ -30,16 +30,24 @@
         <router-view></router-view>
       </keep-alive>
     </el-main>
+      <el-dialog
+    title="入库表"
+    :visible.sync="showInForm"
+  >
+    <in-form></in-form>
+  </el-dialog>
   </div>
 </template>
 
 <script>
+import inForm from './components/inForm'
 export default {
   name: "app",
-  components: {},
+  components: {inForm},
   data() {
     return {
       activeIndex: "",
+      showInForm:false
     };
   },
   methods:{
@@ -47,6 +55,9 @@ export default {
       this.$router.push({
           path:path
       })
+    },
+    inForm(){
+      this.showInForm=true
     }
   },
   watch: {
