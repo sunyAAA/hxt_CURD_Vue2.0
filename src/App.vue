@@ -30,12 +30,11 @@
         <router-view></router-view>
       </keep-alive>
     </el-main>
-      <el-dialog
-    title="入库表"
-    :visible.sync="showInForm"
-  >
-    <in-form></in-form>
-  </el-dialog>
+    <el-dialog
+      title="入库表"
+      :visible.sync="showInForm">
+      <in-form  @complete='closeDialog'></in-form>
+    </el-dialog>
   </div>
 </template>
 
@@ -58,6 +57,9 @@ export default {
     },
     inForm(){
       this.showInForm=true
+    },
+    closeDialog(){
+      this.showInForm = false;
     }
   },
   watch: {

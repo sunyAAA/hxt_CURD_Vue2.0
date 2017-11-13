@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import VResource from 'vue-resource'
 import { Button, Select,Container,Aside,Main,Form,FormItem,Input,Menu,MenuItem,Header,Row,Col,Table
-  ,TableColumn,Loading,Pagination,DatePicker,Dialog
+  ,TableColumn,Loading,Pagination,DatePicker,Dialog,Notification
 } from 'element-ui'
 
 Vue.use(VResource)
@@ -28,6 +28,8 @@ Vue.use(Loading)
 Vue.use(Pagination)
 Vue.use(DatePicker)
 Vue.use(Dialog)
+
+Vue.prototype.$notify = Notification
 
 Vue.config.productionTip = false
 
