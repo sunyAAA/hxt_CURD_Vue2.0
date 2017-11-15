@@ -155,6 +155,8 @@ export default {
           this.succAlert();
           this.$refs["inForm"].resetFields();
         }
+      },erro=>{
+        this.resErroAlert()
       });
     },
     submit() {

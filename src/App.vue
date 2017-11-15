@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <el-row class="index-header">
+    <el-row class="index-header" v-if='isShowMenu'>
       <el-col :span='8' class="title">
         <p>合鑫泰工贸库存管理系统 <i>ver 2.0.0</i></p>
       </el-col>
@@ -20,14 +20,13 @@
       </el-col>
       <el-col :span='4'>
         <el-menu mode="horizontal">
-            <el-menu-item index='1'>打印</el-menu-item>
-            <el-menu-item index='2'>导出</el-menu-item>
+            <el-menu-item >导出当前表格</el-menu-item>
         </el-menu>
       </el-col>
     </el-row>
     <el-main style="margin-top:60px">
       <keep-alive>
-        <router-view></router-view>
+        <router-view @login-succ='loginSucc'></router-view>
       </keep-alive>
     </el-main>
     <el-dialog
@@ -62,7 +61,8 @@ export default {
       activeIndex: "",
       showInForm:false,
       showOutForm:false,
-      showChangeForm:false
+      showChangeForm:false,
+      isShowMenu:false
     };
   },
   methods:{
@@ -85,16 +85,27 @@ export default {
     },
     closeChangeDialog(){
       this.showChangeForm = false;
+    },
+    loginSucc(){
+      this.isShowMenu = true
     }
   },
   watch: {
     $route(){
+      if(sessionStorage['loginState']==='succ'){
+        this.loginSucc = true;
+      }
       switch(this.$route.name){
         case 'detail':this.activeIndex='1';break;
         case 'total':this.activeIndex='2';break;
         case 'account':this.activeIndex='3';break;
         default: this.activeIndex='1'
       }
+    }
+  },
+  mounted () {
+    if(sessionStorage['loginState']==='succ'){
+      this.isShowMenu = true;
     }
   }
 };

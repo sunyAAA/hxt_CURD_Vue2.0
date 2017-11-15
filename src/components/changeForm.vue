@@ -92,7 +92,9 @@ export default {
                       }else{
                         this.errAlert()
                       }
-                    })
+                    },erro=>{
+                  this.resErroAlert()
+                })
       }else{
         this.errAlert()
       }

@@ -104,6 +104,8 @@ export default {
       this.$nextTick(()=>{
         this.loading=false
       })
+    },erro=>{
+      this.resErroAlert()
     })
     }
   },
