@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VResource from 'vue-resource'
-import { Button, Select,Container,Aside,Main,Form,FormItem,Input,Menu,MenuItem,Header,Row,Col,Table
+import { Button, Select,Container,Aside,Main,Form,FormItem,Input,InputNumber,Menu,MenuItem,Header,Row,Col,Table
   ,TableColumn,Loading,Pagination,DatePicker,Dialog,Notification
 } from 'element-ui'
 
@@ -17,6 +17,7 @@ Vue.use(Main)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
+Vue.use(InputNumber)
 Vue.use(Menu)
 Vue.use(MenuItem)
 Vue.use(Header)
@@ -59,4 +60,13 @@ Vue.prototype.toFullDate =function(value) {
   min = datetime.getMinutes() < 10 ? '0' + datetime.getMinutes() : datetime.getMinutes(),
   sec = datetime.getSeconds() < 10 ? '0' + datetime.getSeconds() : datetime.getSeconds();
   return year + '-' + month + '-' + day + ' ' + hour + '-' + min + '-' + sec;
+}
+/*网络通信错误提示窗*/
+Vue.prototype.resErroAlert = function(){
+    this.$notify({
+      title: '警告',
+      message: '通信错误！请调整网络或者稍后再试',
+      type: 'warning',
+      offset: 300
+    });
 }

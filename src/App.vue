@@ -8,7 +8,7 @@
         <el-menu mode="horizontal"  >
           <el-menu-item index='1' @click='outForm'>出库</el-menu-item>
           <el-menu-item index='2' @click='inForm'>入库</el-menu-item>
-          <el-menu-item index='3'>修改</el-menu-item>
+          <el-menu-item index='3' @click='changeForm'>修改</el-menu-item>
         </el-menu>
       </el-col>
       <el-col :span='6'>
@@ -33,28 +33,36 @@
     <el-dialog
       title="入库表"
       :visible.sync="showInForm">
-      <in-form  @complete='closeDialog'></in-form>
+      <in-form  @complete='closeInDialog'></in-form>
     </el-dialog>
     <el-dialog 
       title="出库表"
       width='65%'
       :visible.sync="showOutForm">
       <out-form></out-form>
-      </el-dialog>
+    </el-dialog>
+    <el-dialog
+      title="修改"
+      :visible.sync= 'showChangeForm'
+    >
+      <change-form  @complete='closeChangeDialog'></change-form>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import inForm from './components/inForm'
 import outForm from './components/outForm'
+import changeForm from './components/changeForm'
 export default {
   name: "app",
-  components: {inForm,outForm},
+  components: {inForm,outForm,changeForm},
   data() {
     return {
       activeIndex: "",
       showInForm:false,
-      showOutForm:false
+      showOutForm:false,
+      showChangeForm:false
     };
   },
   methods:{
@@ -63,14 +71,20 @@ export default {
           path:path
       })
     },
+    changeForm(){
+      this.showChangeForm = true
+    },
     outForm(){
       this.showOutForm=true
     },
     inForm(){
       this.showInForm=true
     },
-    closeDialog(){
+    closeInDialog(){
       this.showInForm = false;
+    },
+    closeChangeDialog(){
+      this.showChangeForm = false;
     }
   },
   watch: {

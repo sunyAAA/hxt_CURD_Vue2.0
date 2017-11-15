@@ -126,12 +126,12 @@ export default {
             this.inForm.breed = info.breed;
             this.inForm.unit = info.unit;
             this.inForm.spec = info.spec;
+          }else{
+            this.missAlter()
           }
         },
         erro => {
-          /**
-         * 错误处理
-         */
+          this.resErroAlert()
         }
       );
     },
@@ -171,7 +171,7 @@ export default {
       const h = this.$createElement;
       this.$notify({
         title: "操作成功",
-        message: h("p", { style: "color: teal" }, "商品名称："+this.inForm.name+'&nbsp;入库：'+this.inForm.count),
+        message: h("p", { style: "color: teal" }, "商品名称："+this.inForm.name+' 入库：'+this.inForm.count),
         offset: 300,
         type: "success"
       });
@@ -185,6 +185,13 @@ export default {
         offset: 300,
       });
       this.inSubmit = false;
+    },
+    missAlter(){
+        this.$notify.info({
+          title: '提醒',
+          message: '未找到当前编号的商品信息，将新增商品信息',
+          offset: 300
+        });
     },
     complete(){
       this.$emit('complete');

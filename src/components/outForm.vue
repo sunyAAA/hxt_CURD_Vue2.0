@@ -1,12 +1,18 @@
 <template>
   <div class="out-form">
     <el-form :model="outForm" :rules="rules" ref='outForm'>
-      <el-form-item label='订单编号' prop='orderId'>
-        <el-input v-model="outForm.orderId"></el-input>
-      </el-form-item>
-      <el-form-item label="商品编码" prop='pid'>
-        <el-input v-model="outForm.pid" @blur="getProductInfo"></el-input>
-      </el-form-item>
+      <el-row :gutter="20">
+        <el-col :span='12'>
+          <el-form-item label='订单编号' prop='orderId'>
+            <el-input v-model="outForm.orderId"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span='12'>
+          <el-form-item label="商品编码" prop='pid'>
+            <el-input v-model="outForm.pid" @blur="getProductInfo"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
     <el-table border stripe
       :data='productData'
@@ -35,7 +41,7 @@
         label='出库数量'
       >
         <template slot-scope="scope">
-          <el-input v-model='scope.row.out'></el-input>
+          <el-input-number style="width:100%" v-model='scope.row.out' :max='Number(scope.row.count)'></el-input-number>
         </template>
       </el-table-column>
       <el-table-column
