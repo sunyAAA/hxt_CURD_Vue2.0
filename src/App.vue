@@ -2,7 +2,7 @@
   <div class="app">
     <el-row class="index-header" v-if='isShowMenu'>
       <el-col :span='8' class="title">
-        <p>合鑫泰工贸库存管理系统 <i>ver 2.0.0</i></p>
+        <p>合鑫泰工贸库存管理系统 <i style="font-size:10px">ver 2.0.0</i></p>
       </el-col>
       <el-col :span='6'>
         <el-menu mode="horizontal"  >
@@ -20,7 +20,7 @@
       </el-col>
       <el-col :span='4'>
         <el-menu mode="horizontal">
-            <el-menu-item  index='0'>导出当前表格</el-menu-item>
+            <el-menu-item  index='0' @click='quit'>注销</el-menu-item>
         </el-menu>
       </el-col>
     </el-row>
@@ -66,7 +66,9 @@ export default {
       isShowMenu:false,
       /*excel 相关变量*/ 
       idTmr:'',
-      fileName:''
+      fileName:'',
+      /*导出excel控制器*/
+      excel:''
     };
   },
   methods:{
@@ -116,8 +118,11 @@ export default {
         else if (explorer.indexOf("Safari") >= 0) {  
             return 'Safari';  
         }  
+    },
+    quit(){
+      sessionStorage['loginState'] = 'false';
+      this.$router.push('login')
     }
-
   },
   watch: {
     $route(){

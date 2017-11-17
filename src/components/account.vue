@@ -1,7 +1,6 @@
 <template>
   <div class="account">
     <el-container
-      style="padding-bottom:10px"
     >
         <el-col :span='10'>
             <el-date-picker
@@ -13,7 +12,7 @@
               placeholder="选择月">
             </el-date-picker>
         </el-col>
-        <el-col :span='14'>
+        <el-col :span='10'>
           <el-pagination
           style="padding:0 auto"          
            layout="prev, pager, next"
@@ -21,6 +20,9 @@
           :page-size="50"
            @current-change="currentChange"
           ></el-pagination>
+        </el-col>
+        <el-col :span="4">
+          <el-button type="success" plain style="marginBottom:5px;float:right" @click="exportExcel">导出</el-button>
         </el-col>
     </el-container>
     <el-table :data='accountSlice' border stripe  v-loading="loading"
@@ -136,7 +138,6 @@ export default {
         tbody.appendChild(tr);
       }    
       table.appendChild(tbody);
-      console.log(table);
       $(table).table2excel({
         exclude: ".noExl",
         name: "Excel Document Name",

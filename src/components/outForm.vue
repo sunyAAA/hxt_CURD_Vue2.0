@@ -86,7 +86,6 @@ export default {
       })
     },
     out(row){
-      console.log(row)
       row.loading=true;
       this.$refs["outForm"].validate(vali => {
         if(vali){

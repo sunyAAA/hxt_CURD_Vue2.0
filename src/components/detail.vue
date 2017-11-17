@@ -8,6 +8,7 @@
            :page-size='pageSize'
            @current-change="currentChange"
         ></el-pagination>
+       <el-button type="success" plain style="marginBottom:5px" @click="exportExcel">导出</el-button>
     </el-container>
       <el-table :data='detailSlice' border stripe  v-loading="loading"
         style="minHeight:500px"

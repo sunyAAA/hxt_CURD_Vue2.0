@@ -8,6 +8,7 @@
           :page-size="50"
           @current-change="currentChange"
         ></el-pagination>
+        <el-button type="success" plain style="marginBottom:5px" @click="exportExcel">导出</el-button>
     </el-container>
     <el-table :data='totalSlice' border stripe  v-loading="loading"
         style="minHeight:500px"
@@ -87,16 +88,17 @@ export default {
           thead.appendChild(tr);
           table.appendChild(thead)
       let tbody = document.createElement('tbody');
-      for(let i = 0 ;i<this.detail.length;i++){
+      for(let i = 0 ;i<this.totalDate.length;i++){
         let tr = document.createElement('tr');
-        let item = this.detail[i];
-        tr.innerHTML = `<td>&nbsp;${item.pid}</td>
-                        <td>${item.name}</td>
-                        <td>${item.spec}</td>
-                        <td>${item.count}</td>
-                        <td>${item.unit}</td>
-                        <td>${item.depot}</td>
-                        <td>${item.breed}</td>`
+        let item = this.totalDate[i];
+        tr.innerHTML = `<td>&nbsp;${item[0]}</td>
+                        <td>${item[1]}</td>
+                        <td>${item[2]}</td>
+                        <td>${item[3]}</td>
+                        <td>${item[4]}</td>
+                        <td>${item[5]}</td>
+                        <td>${item[6]}</td>`
+
         tbody.appendChild(tr);
       }
       table.appendChild(tbody);

@@ -36,7 +36,6 @@ Vue.config.productionTip = false
 router.beforeEach((to, from, next) => {
   // alert(sessionStorage.getItem('accessToken'))
   //    console.log(to);
-  console.log(to)
      if ((to.path!='/login')&&sessionStorage['loginState'] != 'succ') {
          next({
              path: 'login',

@@ -58,7 +58,7 @@ export default {
     }
   },
   mounted () {
-    if(sessionStorage['loginState'] = 'succ'){
+    if(sessionStorage['loginState'] == 'succ'){
       this.loginSucc()
     }
   }
