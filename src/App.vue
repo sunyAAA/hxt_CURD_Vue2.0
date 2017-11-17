@@ -20,7 +20,7 @@
       </el-col>
       <el-col :span='4'>
         <el-menu mode="horizontal">
-            <el-menu-item >导出当前表格</el-menu-item>
+            <el-menu-item  index='0'>导出当前表格</el-menu-item>
         </el-menu>
       </el-col>
     </el-row>
@@ -58,11 +58,15 @@ export default {
   components: {inForm,outForm,changeForm},
   data() {
     return {
+      /*视图控制相关 */
       activeIndex: "",
       showInForm:false,
       showOutForm:false,
       showChangeForm:false,
-      isShowMenu:false
+      isShowMenu:false,
+      /*excel 相关变量*/ 
+      idTmr:'',
+      fileName:''
     };
   },
   methods:{
@@ -88,7 +92,32 @@ export default {
     },
     loginSucc(){
       this.isShowMenu = true
+    },
+    /**浏览器判断 */
+    getExplorer(){
+         var explorer = window.navigator.userAgent;  
+        //ie    
+        if (explorer.indexOf("MSIE") >= 0) {  
+            return 'ie';  
+        }  
+        //firefox    
+        else if (explorer.indexOf("Firefox") >= 0) {  
+            return 'Firefox';  
+        }  
+        //Chrome    
+        else if (explorer.indexOf("Chrome") >= 0) {  
+            return 'Chrome';  
+        }  
+        //Opera    
+        else if (explorer.indexOf("Opera") >= 0) {  
+            return 'Opera';  
+        }  
+        //Safari    
+        else if (explorer.indexOf("Safari") >= 0) {  
+            return 'Safari';  
+        }  
     }
+
   },
   watch: {
     $route(){

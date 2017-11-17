@@ -87,6 +87,46 @@ export default {
   methods:{
     currentChange(index){
       this.sliceIndex = index
+    },
+    exportExcel(){
+      let table = document.createElement('table');
+      let thead = document.createElement('thead');
+      let tr = document.createElement('tr');
+          tr.innerHTML = `<th>编码</th>
+                          <th>名称</th>
+                          <th>规格</th>
+                          <th>数量</th>
+                          <th>单位</th>
+                          <th>生产日期</th>
+                          <th>最近出库时间</th>
+                          <th>库位</th>
+                          <th>品种</th>`
+          thead.appendChild(tr);
+          table.appendChild(thead)
+      let tbody = document.createElement('tbody');
+      for(let i = 0 ;i<this.detail.length;i++){
+        let tr = document.createElement('tr');
+        let item = this.detail[i];
+        tr.innerHTML = `<td>&nbsp;${item.pid}</td>
+                        <td>${item.name}</td>
+                        <td>${item.spec}</td>
+                        <td>${item.count}</td>
+                        <td>${item.unit}</td>
+                        <td>${item.mdate}</td>
+                        <td>${item.inTime}</td>
+                        <td>${item.depot}</td>
+                        <td>${item.breed}</td>`
+        tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+      $(table).table2excel({
+            exclude: ".noExl",
+            name: "Excel Document Name",
+            filename: "myFileName",
+            exclude_img: true,
+            exclude_links: true,
+            exclude_inputs: true
+      });
     }
   }
 };

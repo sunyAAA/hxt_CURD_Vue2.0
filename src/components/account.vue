@@ -50,10 +50,6 @@
         label="规格">
       </el-table-column>
       <el-table-column 
-        prop="spec"
-        label="规格">
-      </el-table-column>
-      <el-table-column 
         prop="unit"
         label="单位">
       </el-table-column>
@@ -107,10 +103,52 @@ export default {
     },erro=>{
       this.resErroAlert()
     })
+    },
+    exportExcel(){
+      let table = document.createElement('table');
+          table.id = 'account';
+      let thead = document.createElement('thead');
+      let tr = document.createElement('tr');
+          tr.innerHTML = `<th>订单编号</th>
+                          <th>操作类型</th>
+                          <th>时间</th>
+                          <th>编码</th>
+                          <th>名称</th>
+                          <th>规格</th>
+                          <th>单位</th>
+                          <th>库位</th>
+                          <th>数量</th>`
+          thead.appendChild(tr);
+          table.appendChild(thead)
+      let tbody = document.createElement('tbody')    
+      for(let i = 0 ;i <this.accountData.length;i++){
+        let tr = document.createElement('tr');
+        let item = this.accountData[i];
+        tr.innerHTML = `<td>&nbsp;${item.orderId}</td>
+                        <td>${item.aType}</td>
+                        <td>${item.aTime}</td>
+                        <td>&nbsp;${item.pid}</td>
+                        <td>${item.name}</td>
+                        <td>${item.spec}</td>
+                        <td>${item.unit}</td>
+                        <td>${item.depot}</td>
+                        <td>${item.aCount}</td>`
+        tbody.appendChild(tr);
+      }    
+      table.appendChild(tbody);
+      console.log(table);
+      $(table).table2excel({
+        exclude: ".noExl",
+        name: "Excel Document Name",
+        filename: "myFileName",
+        exclude_img: true,
+        exclude_links: true,
+        exclude_inputs: true
+      });
     }
   },
   created () {
-    this.getDate()
+    this.getDate();
   },
   watch:{
     month(){

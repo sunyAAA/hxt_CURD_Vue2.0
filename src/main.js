@@ -73,7 +73,7 @@ Vue.prototype.toFullDate =function(value) {
   hour = datetime.getHours() < 10 ? '0' + datetime.getHours() : datetime.getHours(),
   min = datetime.getMinutes() < 10 ? '0' + datetime.getMinutes() : datetime.getMinutes(),
   sec = datetime.getSeconds() < 10 ? '0' + datetime.getSeconds() : datetime.getSeconds();
-  return year + '-' + month + '-' + day + ' ' + hour + '-' + min + '-' + sec;
+  return year + '-' + month + '-' + day + ' ' + hour + '：' + min + '：' + sec;
 }
 /*网络通信错误提示窗*/
 Vue.prototype.resErroAlert = function(){
