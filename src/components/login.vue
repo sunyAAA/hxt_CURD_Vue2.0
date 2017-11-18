@@ -32,7 +32,7 @@ export default {
       },
       rules: {
         uname: [{ required: true, message: "请输入订单编号", trigger: "blur" }],
-        upwd: [{ required: true, message: "请输入商品编码", trigger: "blur" }]
+        upwd: [{ required: true, message: "请输入密码", trigger: "blur" }]
       }
     }
   },

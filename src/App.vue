@@ -21,13 +21,12 @@
       <el-col :span='4'>
         <el-menu mode="horizontal">
             <el-menu-item  index='0' @click='quit'>注销</el-menu-item>
+            <el-menu-item  index='1' @click='back'>返回旧版</el-menu-item>
         </el-menu>
       </el-col>
     </el-row>
     <el-main style="margin-top:60px">
-      <keep-alive>
-        <router-view @login-succ='loginSucc'></router-view>
-      </keep-alive>
+      <router-view @login-succ='loginSucc'></router-view>
     </el-main>
     <el-dialog
       title="入库表"
@@ -122,6 +121,9 @@ export default {
     quit(){
       sessionStorage['loginState'] = 'false';
       this.$router.push('login')
+    },
+    back(){
+      location.href='http://hxtcurd.sc2yun.com/';
     }
   },
   watch: {

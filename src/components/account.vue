@@ -6,10 +6,10 @@
             <el-date-picker
               v-model="month"
               align="right"
-              type="month"
-              format="yyyy 年 MM 月"
-              value-format="yyyy-MM"
-              placeholder="选择月">
+              type="date"
+              format="yyyy 年 MM 月 dd 日"
+              value-format="yyyy-MM-dd"
+              placeholder="按日期查询">
             </el-date-picker>
         </el-col>
         <el-col :span='10'>
@@ -25,7 +25,7 @@
           <el-button type="success" plain style="marginBottom:5px;float:right" @click="exportExcel">导出</el-button>
         </el-col>
     </el-container>
-    <el-table :data='accountSlice' border stripe  v-loading="loading"
+    <el-table :data='accountSlice' border stripe  v-loading="loading" style="minHeight:800px"
     >
       <el-table-column 
         prop="orderId"
@@ -77,7 +77,8 @@ export default {
       loading:true,
       dateParams:{
         'accYear':new Date().getFullYear(),
-        'accMonth':new Date().getMonth()+1
+        'accMonth':new Date().getMonth()+1,
+        'accDay':new Date().getDate()
       }
     }
   },
@@ -138,10 +139,12 @@ export default {
         tbody.appendChild(tr);
       }    
       table.appendChild(tbody);
+      let filename = "操作日志"+this.month==''?new Date().toLocaleDateString():this.month;
+      console.log(this.month)
       $(table).table2excel({
         exclude: ".noExl",
         name: "Excel Document Name",
-        filename: "myFileName",
+        filename: filename,
         exclude_img: true,
         exclude_links: true,
         exclude_inputs: true
@@ -156,6 +159,7 @@ export default {
       let arr  = this.month.split('-');
       this.dateParams.accYear=arr[0];
       this.dateParams.accMonth=arr[1];
+      this.dateParams.accDay=arr[2];
       this.getDate()
     }
   }

@@ -11,7 +11,7 @@
         <el-button type="success" plain style="marginBottom:5px" @click="exportExcel">导出</el-button>
     </el-container>
     <el-table :data='totalSlice' border stripe  v-loading="loading"
-        style="minHeight:500px"
+        style="minHeight:800px"
       >
          <el-table-column 
          prop="0"
@@ -105,7 +105,7 @@ export default {
       $(table).table2excel({
             exclude: ".noExl",
             name: "Excel Document Name",
-            filename: "myFileName",
+            filename: "库存汇总 "+new Date().toLocaleDateString(),
             exclude_img: true,
             exclude_links: true,
             exclude_inputs: true

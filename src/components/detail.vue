@@ -11,7 +11,7 @@
        <el-button type="success" plain style="marginBottom:5px" @click="exportExcel">导出</el-button>
     </el-container>
       <el-table :data='detailSlice' border stripe  v-loading="loading"
-        style="minHeight:500px"
+        style="minHeight:800px"
       >
          <el-table-column 
          prop="pid"
@@ -66,7 +66,7 @@ export default {
     };
   },
   created () {
-    this.$http.get('apis/getAll.php').then(res=>{
+    this.$http.get('/apis/getAll.php').then(res=>{
       let detailDate=res.data
       let arr=[];
       detailDate.forEach(item=>{
@@ -123,7 +123,7 @@ export default {
       $(table).table2excel({
             exclude: ".noExl",
             name: "Excel Document Name",
-            filename: "myFileName",
+            filename: "库存明细 "+new Date().toLocaleDateString(),
             exclude_img: true,
             exclude_links: true,
             exclude_inputs: true
