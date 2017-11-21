@@ -23,7 +23,7 @@
          </el-table-column>
          <el-table-column 
          prop="2"
-         label="名称">
+         label="类型">
          </el-table-column>
          <el-table-column 
          prop="3"
