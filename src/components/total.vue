@@ -23,15 +23,15 @@
          </el-table-column>
          <el-table-column 
          prop="2"
-         label="类型">
+         label="规格">
          </el-table-column>
          <el-table-column 
          prop="3"
-         label="名称">
+         label="数量">
          </el-table-column>
          <el-table-column 
          prop="4"
-         label="名称">
+         label="单位">
          </el-table-column>
          <el-table-column 
          prop="5"
