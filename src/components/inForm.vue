@@ -183,7 +183,7 @@ export default {
       const h = this.$createElement;
       this.$notify.error({
         title: "操作失败",
-        message: h("p", { style: "color: teal" }, '数据为发生变动，请检查网络波动或表单数据是否正确'),
+        message: h("p", { style: "color: teal" }, '数据未发生变动，请检查网络波动或表单数据是否正确'),
         offset: 300,
       });
       this.inSubmit = false;
